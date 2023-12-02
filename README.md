@@ -13,9 +13,11 @@ Terraform will install `AD-Domain-Services` via custom scripts extension.
 
 Install the AD Domain Services package:
 
+> Set the domain to be the same as the Entra tenant, such as "<domain>.onmicrosoft.com"
+
 ```sh
 # You'll need to type in the password and select "A" for all
-Install-ADDSForest -DomainName contoso.local -InstallDNS
+Install-ADDSForest -DomainName <Entra Domain> -InstallDNS
 ```
 
 The server will be restarted.

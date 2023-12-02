@@ -47,9 +47,3 @@ module "onpremises_active_directory" {
   password            = var.vm_password
   ps1_url             = module.storage.ps1_url
 }
-
-# module "entraid" {
-#   source                     = "./modules/entraid"
-#   entraid_tenant_domain      = var.entraid_tenant_domain
-#   sqldeveloper_user_password = var.entraid_sqldeveloper_user_password
-# }

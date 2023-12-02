@@ -53,21 +53,20 @@ resource "azurerm_windows_virtual_machine" "active_directory" {
   }
 }
 
-# TODO: Install
-# resource "azurerm_virtual_machine_extension" "AADLoginForWindows" {
-#   name                 = "AADLoginForWindows"
-#   virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
-#   publisher            = "Microsoft.Azure.ActiveDirectory"
-#   type                 = "AADLoginForWindows"
-#   type_handler_version = "2.*" #2.1
-# }
+resource "azurerm_virtual_machine_extension" "AADLoginForWindows" {
+  name                 = "AADLoginForWindows"
+  virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
+  publisher            = "Microsoft.Azure.ActiveDirectory"
+  type                 = "AADLoginForWindows"
+  type_handler_version = "2.*" #2.1
+}
 
 resource "azurerm_virtual_machine_extension" "CustomScriptExtension" {
   name                 = "CustomScriptExtension"
   virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
-  type_handler_version = "1.8"
+  type_handler_version = "2.*"
   settings             = <<SETTINGS
         {
             "fileUris": [
