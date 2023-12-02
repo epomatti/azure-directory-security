@@ -61,6 +61,7 @@ resource "azurerm_virtual_machine_extension" "AADLoginForWindows" {
   type_handler_version = "2.1"
 }
 
+# https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows
 resource "azurerm_virtual_machine_extension" "CustomScriptExtension" {
   name                 = "CustomScriptExtension"
   virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
