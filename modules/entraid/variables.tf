@@ -2,7 +2,11 @@ variable "entraid_tenant_domain" {
   type = string
 }
 
-variable "sqldeveloper_user_password" {
+variable "administrator_user_password" {
   type      = string
   sensitive = true
+}
+
+variable "resource_group_id" {
+  type = string
 }

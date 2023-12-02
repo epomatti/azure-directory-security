@@ -17,11 +17,11 @@ variable "allow_ips" {
 }
 
 ### Entra ID ###
-# variable "entraid_tenant_domain" {
-#   type = string
-# }
+variable "entraid_tenant_domain" {
+  type = string
+}
 
-# variable "entraid_sqldeveloper_user_password" {
-#   type      = string
-#   sensitive = true
-# }
+variable "entraid_administrator_user_password" {
+  type      = string
+  sensitive = true
+}

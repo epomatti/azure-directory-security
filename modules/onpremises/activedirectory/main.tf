@@ -35,6 +35,10 @@ resource "azurerm_windows_virtual_machine" "active_directory" {
   admin_password        = var.password
   network_interface_ids = [azurerm_network_interface.windows.id]
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   os_disk {
     name                 = "osdisk-${local.name}"
     caching              = "ReadOnly"
@@ -48,6 +52,15 @@ resource "azurerm_windows_virtual_machine" "active_directory" {
     version   = "latest"
   }
 }
+
+# TODO: Install
+# resource "azurerm_virtual_machine_extension" "AADLoginForWindows" {
+#   name                 = "AADLoginForWindows"
+#   virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
+#   publisher            = "Microsoft.Azure.ActiveDirectory"
+#   type                 = "AADLoginForWindows"
+#   type_handler_version = "2.*" #2.1
+# }
 
 resource "azurerm_virtual_machine_extension" "CustomScriptExtension" {
   name                 = "CustomScriptExtension"
