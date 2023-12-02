@@ -58,7 +58,7 @@ resource "azurerm_virtual_machine_extension" "AADLoginForWindows" {
   virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
   publisher            = "Microsoft.Azure.ActiveDirectory"
   type                 = "AADLoginForWindows"
-  type_handler_version = "2.*" #2.1
+  type_handler_version = "2.1"
 }
 
 resource "azurerm_virtual_machine_extension" "CustomScriptExtension" {
@@ -66,7 +66,7 @@ resource "azurerm_virtual_machine_extension" "CustomScriptExtension" {
   virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
-  type_handler_version = "2.*"
+  type_handler_version = "1.10"
   settings             = <<SETTINGS
         {
             "fileUris": [
