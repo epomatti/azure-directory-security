@@ -23,13 +23,20 @@ module "onpremises_vnet" {
   location            = azurerm_resource_group.onpremises.location
 }
 
-module "vm_windows" {
+module "storage" {
+  source              = "./modules/storage"
+  resource_group_name = azurerm_resource_group.onpremises.name
+  location            = azurerm_resource_group.onpremises.location
+}
+
+module "onpremises_active_directory" {
   source              = "./modules/onpremises/activedirectory"
   resource_group_name = azurerm_resource_group.onpremises.name
   location            = azurerm_resource_group.onpremises.location
   subnet_id           = module.onpremises_vnet.subnet_id
   size                = var.vm_windows_size
   password            = var.vm_password
+  ps1_url             = module.storage.ps1_url
 }
 
 # module "entraid" {

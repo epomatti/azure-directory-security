@@ -18,3 +18,7 @@ variable "password" {
   type      = string
   sensitive = true
 }
+
+variable "ps1_url" {
+  type = string
+}

@@ -26,7 +26,7 @@ resource "azurerm_network_interface" "windows" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "windows" {
+resource "azurerm_windows_virtual_machine" "active_directory" {
   name                  = "vm-${local.name}"
   resource_group_name   = var.resource_group_name
   location              = var.location
@@ -34,8 +34,6 @@ resource "azurerm_windows_virtual_machine" "windows" {
   admin_username        = "ad-admin"
   admin_password        = var.password
   network_interface_ids = [azurerm_network_interface.windows.id]
-
-  custom_data = filebase64("${path.module}/userdata.ps1")
 
   os_disk {
     name                 = "osdisk-${local.name}"
@@ -49,4 +47,20 @@ resource "azurerm_windows_virtual_machine" "windows" {
     sku       = "2022-datacenter"
     version   = "latest"
   }
+}
+
+resource "azurerm_virtual_machine_extension" "CustomScriptExtension" {
+  name                 = "CustomScriptExtension"
+  virtual_machine_id   = azurerm_windows_virtual_machine.active_directory.id
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.8"
+  settings             = <<SETTINGS
+        {
+            "fileUris": [
+                "${var.ps1_url}"
+                ],
+            "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File userdata.ps1"
+        }
+    SETTINGS
 }
