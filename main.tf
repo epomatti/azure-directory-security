@@ -29,6 +29,7 @@ module "vm_windows" {
   location            = azurerm_resource_group.onpremises.location
   subnet_id           = module.onpremises_vnet.subnet_id
   size                = var.vm_windows_size
+  password            = var.vm_password
 }
 
 # module "entraid" {

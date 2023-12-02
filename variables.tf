@@ -7,6 +7,11 @@ variable "vm_windows_size" {
   type = string
 }
 
+variable "vm_password" {
+  type      = string
+  sensitive = true
+}
+
 ### Entra ID ###
 # variable "entraid_tenant_domain" {
 #   type = string

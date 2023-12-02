@@ -13,3 +13,8 @@ variable "subnet_id" {
 variable "size" {
   type = string
 }
+
+variable "password" {
+  type      = string
+  sensitive = true
+}

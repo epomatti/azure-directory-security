@@ -32,8 +32,10 @@ resource "azurerm_windows_virtual_machine" "windows" {
   location              = var.location
   size                  = var.size
   admin_username        = "ad-admin"
-  admin_password        = "P@ssw0rd.123"
+  admin_password        = var.password
   network_interface_ids = [azurerm_network_interface.windows.id]
+
+  custom_data = filebase64("${path.module}/userdata.ps1")
 
   os_disk {
     name                 = "osdisk-${local.name}"
