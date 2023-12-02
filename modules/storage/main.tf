@@ -12,6 +12,15 @@ resource "azurerm_storage_account" "default" {
   account_replication_type        = "LRS"
   public_network_access_enabled   = true
   allow_nested_items_to_be_public = true
+  enable_https_traffic_only       = true
+  min_tls_version                 = "TLS1_2"
+
+  network_rules {
+    default_action             = "Deny"
+    ip_rules                   = []
+    virtual_network_subnet_ids = [var.subnet_id]
+    bypass                     = ["AzureServices"]
+  }
 }
 
 resource "azurerm_storage_container" "install" {

@@ -27,6 +27,7 @@ module "storage" {
   source              = "./modules/storage"
   resource_group_name = azurerm_resource_group.onpremises.name
   location            = azurerm_resource_group.onpremises.location
+  subnet_id           = module.onpremises_vnet.subnet_id
 }
 
 module "onpremises_active_directory" {
