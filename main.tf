@@ -28,6 +28,7 @@ module "storage" {
   resource_group_name = azurerm_resource_group.onpremises.name
   location            = azurerm_resource_group.onpremises.location
   subnet_id           = module.onpremises_vnet.subnet_id
+  allow_ips           = var.allow_ips
 }
 
 module "onpremises_active_directory" {
@@ -38,6 +39,7 @@ module "onpremises_active_directory" {
   size                = var.vm_windows_size
   password            = var.vm_password
   ps1_url             = module.storage.ps1_url
+
 }
 
 # module "entraid" {

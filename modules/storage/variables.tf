@@ -9,3 +9,7 @@ variable "location" {
 variable "subnet_id" {
   type = string
 }
+
+variable "allow_ips" {
+  type = list(string)
+}

@@ -12,6 +12,10 @@ variable "vm_password" {
   sensitive = true
 }
 
+variable "allow_ips" {
+  type = list(string)
+}
+
 ### Entra ID ###
 # variable "entraid_tenant_domain" {
 #   type = string
