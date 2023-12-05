@@ -48,10 +48,8 @@ resource "azurerm_windows_virtual_machine" "active_directory" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2022-datacenter"
-    # TODO: Update
-    # sku       = "2022-datacenter-g2"
-    version = "latest"
+    sku       = "2022-datacenter-g2"
+    version   = "latest"
   }
 }
 
