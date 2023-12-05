@@ -49,7 +49,9 @@ resource "azurerm_windows_virtual_machine" "active_directory" {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
     sku       = "2022-datacenter"
-    version   = "latest"
+    # TODO: Update
+    # sku       = "2022-datacenter-g2"
+    version = "latest"
   }
 }
 
