@@ -34,31 +34,38 @@ Install-ADDSForest -DomainName contoso.local -InstallDNS
 
 🔴🟢 The server will be restarted.
 
+It is possible to configure these types of authentication on Entra ID:
+
 - Password Hash Synchronization
 - Pass-through Authentication
 - Federated Authentication
--
 
 There are two offerings for sync:
 
 - Entra Connect V2
 - Entra Connect Cloud Sync
 
-We'll proceed with [Connect V2][3] here.
+We'll proceed with **Cloud Sync** here.
 
-Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))
+Terraform will also have created an `administrator` account with `Hybrid Identity Administrator` privileged to be used during Entra sync setup. Use it to configure synchronization.
 
-https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key#to-create-the-kds-root-key-in-a-test-environment-for-immediate-effectiveness
+Follow the [instructions][4] to install the Cloud Sync agent.
 
-Terraform will also have created an `administrator` account with `Hybrid Identity Administrator` privileged to be used during AD sync setup. Use it to configure synchronization.
+> It will be required to enable advanced features in Active Directory
 
-> Enable advanced features in Active Directory
+When creating an Organizational Unit named `Cloud`, this is an example fo a "Distinguished Name".
 
 ```
 OU=Cloud,DC=contoso,DC=local
 ```
 
+It might be required to set this [KDS Root key][3]:
+
+```
+Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))
+```
 
 [1]: https://www.dell.com/support/kbdoc/en-us/000121955/installing-active-directory-domain-services-and-promoting-the-server-to-a-domain-controller
 [2]: https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/what-is-cloud-sync
-[3]: https://www.microsoft.com/en-us/download/details.aspx?id=47594
+[3]: https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/create-the-key-distribution-services-kds-root-key#to-create-the-kds-root-key-in-a-test-environment-for-immediate-effectiveness
+[4]: https://learn.microsoft.com/en-us/entra/identity/hybrid/install
