@@ -1,12 +1,8 @@
-locals {
-  user = "administrator"
-}
-
 resource "azuread_user" "administrator" {
   account_enabled     = true
-  user_principal_name = "${local.user}@${var.entraid_tenant_domain}"
-  display_name        = local.user
-  mail_nickname       = local.user
+  user_principal_name = "${var.administrator_user_name}@${var.entraid_tenant_domain}"
+  display_name        = var.administrator_user_name
+  mail_nickname       = var.administrator_user_name
   password            = var.administrator_user_password
 }
 

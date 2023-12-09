@@ -2,6 +2,18 @@
 
 Implementation for Active Directory integrations with Entra ID.
 
+Copy the template for the `.auto.tfvars`:
+
+```sh
+cp config/template.tfvars .auto.tfvars
+```
+
+Set you public IP to be allowed in the firewalls:
+
+```sh
+dig +short myip.opendns.com @resolver1.opendns.com
+```
+
 Create the infrastructure:
 
 ```sh

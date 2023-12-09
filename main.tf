@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.83.0"
+      version = "3.84.0"
     }
     azuread = {
       source  = "hashicorp/azuread"
@@ -34,6 +34,7 @@ module "storage" {
 module "entraid" {
   source                      = "./modules/entraid"
   entraid_tenant_domain       = var.entraid_tenant_domain
+  administrator_user_name     = var.entraid_administrator_user_name
   administrator_user_password = var.entraid_administrator_user_password
   resource_group_id           = azurerm_resource_group.onpremises.id
 }
