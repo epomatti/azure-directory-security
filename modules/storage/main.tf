@@ -27,6 +27,8 @@ resource "azurerm_storage_container" "install" {
   name                  = "install"
   storage_account_name  = azurerm_storage_account.default.name
   container_access_type = "blob"
+
+  depends_on = [azurerm_role_assignment.current]
 }
 
 resource "azurerm_storage_blob" "ps1" {
@@ -37,7 +39,7 @@ resource "azurerm_storage_blob" "ps1" {
   source                 = "${path.module}/userdata.ps1"
 }
 
-### Permissions ###
+### Permissions (just in case) ###
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_role_assignment" "current" {
