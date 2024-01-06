@@ -34,21 +34,20 @@ Install-ADDSForest -DomainName contoso.local -InstallDNS
 
 🔴🟢 The server will be restarted.
 
+Management of the forest can be implemented
+
+Synchronization options are performed in the agent. There are two offerings for sync:
+
+- Entra Connect Cloud Sync
+- Entra Connect V2
+
+Terraform will also have created an `administrator` account with `Hybrid Identity Administrator` privilege to be used during Entra sync setup. Use it to configure synchronization.
+
 It is possible to configure these types of authentication on Entra ID:
 
 - Password Hash Synchronization
 - Pass-through Authentication
 - Federated Authentication
-
-There are two offerings for sync:
-
-- Entra Connect V2
-- Entra Connect Cloud Sync
-
-Terraform will also have created an `administrator` account with `Hybrid Identity Administrator` privilege to be used during Entra sync setup. Use it to configure synchronization.
-
-## Entra Connect V2
-
 
 
 ## Cloud Sync
@@ -68,6 +67,11 @@ It might be required to set this [KDS Root key][3]:
 ```
 Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10))
 ```
+
+## Entra Connect V2
+
+Download and install the agent.
+
 
 [1]: https://www.dell.com/support/kbdoc/en-us/000121955/installing-active-directory-domain-services-and-promoting-the-server-to-a-domain-controller
 [2]: https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/what-is-cloud-sync
