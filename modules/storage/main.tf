@@ -36,3 +36,18 @@ resource "azurerm_storage_blob" "ps1" {
   type                   = "Block"
   source                 = "${path.module}/userdata.ps1"
 }
+
+### Permissions ###
+data "azurerm_client_config" "current" {}
+
+resource "azurerm_role_assignment" "current" {
+  scope                = azurerm_storage_account.default.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = data.azurerm_client_config.current.object_id
+}
+
+resource "azurerm_role_assignment" "administrator" {
+  scope                = azurerm_storage_account.default.id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = var.administrator_user_object_id
+}

@@ -45,9 +45,13 @@ There are two offerings for sync:
 - Entra Connect V2
 - Entra Connect Cloud Sync
 
-We'll proceed with **Cloud Sync** here.
-
 Terraform will also have created an `administrator` account with `Hybrid Identity Administrator` privilege to be used during Entra sync setup. Use it to configure synchronization.
+
+## Entra Connect V2
+
+
+
+## Cloud Sync
 
 Follow the [instructions][4] to install the Cloud Sync agent.
 

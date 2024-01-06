@@ -13,3 +13,7 @@ variable "subnet_id" {
 variable "allow_ips" {
   type = list(string)
 }
+
+variable "administrator_user_object_id" {
+  type = string
+}
