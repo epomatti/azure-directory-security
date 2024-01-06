@@ -31,7 +31,7 @@ resource "azurerm_windows_virtual_machine" "active_directory" {
   resource_group_name   = var.resource_group_name
   location              = var.location
   size                  = var.size
-  admin_username        = "ad-admin"
+  admin_username        = "vmadmin"
   admin_password        = var.password
   network_interface_ids = [azurerm_network_interface.windows.id]
 
